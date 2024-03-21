@@ -11,7 +11,7 @@ const dataParser = require('body-parser')
 const fs = require('fs')
 const path = require('path')
 router.use(dataParser.json({extended:true}))
-const paths = __dirname.substring(0, __dirname.indexOf("src")) 
+const paths = __dirname.substring(0, __dirname.lastIndexOf("src")) 
 router.use((req, res, next) => {
     res.append('Access-Control-Allow-Origin', '*');
     res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -31,8 +31,7 @@ router.post('/user', controller.user)
 //listen to 404 request
 router.get("*", (req, res) =>{
     let tm = req.url
-    console.log(path.join(paths, tm))
-    if(fs.existsSync(path.join(paths, tm))){  console.log(path.join(paths, tm))
+    if(fs.existsSync(path.join(paths, tm))){   
         res.sendFile(path.join(paths, tm))
     }
     else{
