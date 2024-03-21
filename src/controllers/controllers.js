@@ -98,12 +98,14 @@ exports.fetchMoments = async (req, res) => {
                 if (err) {
                     resData.moments = []
                     res.send({status:true, moments:resData})
+                    return;
                 }
                 // Read contents of the folder
                 fs.readdir(dest, (err, files) => {
                     if (err) {
                         resData.moments = []
                         res.send({status:true, moments:resData})
+                        return;
                     }
     
                     const filesWithCreationDates = [];
@@ -227,7 +229,7 @@ exports.createMoments = async (req, res) => {
                 owner:param.owner,
             }, (status) => {
                 if(status.status == true) {
-                    res.send({status:true, id:moment_id, uri: '/' + moment_id})
+                    res.send({status:true, id:moment_id, uri: moment_id})
                 }
                 else {
                     res.send({status:false, err:'database error', errNo:4})

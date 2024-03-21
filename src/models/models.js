@@ -26,7 +26,7 @@ class _USERDB{
     model = null;
     constructor(){
         //initialize database schema
-        this.model = mongoose.model("userV1", {
+        this.model = mongoose.model("user", {
             userId:String, 
             password:String,
             email:String,
@@ -210,7 +210,7 @@ class _MOMENTDB{
     model = null;
     constructor(){
         //initialize database schema
-        this.model = mongoose.model("momentV1", {
+        this.model = mongoose.model("moment", {
             id:String, 
             name:String,
             pic:String,
