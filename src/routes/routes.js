@@ -9,8 +9,9 @@ const multer = require('multer')
 const controller = require('../controllers/controllers.js')
 const dataParser = require('body-parser')
 const fs = require('fs')
+const path = require('path')
 router.use(dataParser.json({extended:true}))
-const path = __dirname.substring(0, __dirname.indexOf("src")) 
+const paths = __dirname.substring(0, __dirname.indexOf("src")) 
 router.use((req, res, next) => {
     res.append('Access-Control-Allow-Origin', '*');
     res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -30,8 +31,8 @@ router.post('/user', controller.user)
 //listen to 404 request
 router.get("*", (req, res) =>{
     let tm = req.url
-    if(fs.existsSync(path + tm)){
-        res.sendFile(path + tm)
+    if(fs.existsSync(path.join(paths, tm))){
+        res.sendFile(path.join(paths, tm))
     }
     else{
         res.status(404).json({
