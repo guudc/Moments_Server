@@ -31,7 +31,8 @@ router.post('/user', controller.user)
 //listen to 404 request
 router.get("*", (req, res) =>{
     let tm = req.url
-    if(fs.existsSync(path.join(paths, tm))){
+    console.log(path.join(paths, tm))
+    if(fs.existsSync(path.join(paths, tm))){  console.log(path.join(paths, tm))
         res.sendFile(path.join(paths, tm))
     }
     else{
